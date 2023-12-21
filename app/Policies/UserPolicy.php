@@ -27,7 +27,7 @@ class UserPolicy
     }
 
     public function edit(User $user, User $targetUser) {
-        return $user->role === 'Superadmin' || $user->id === $targetUser->creator_user_id || $user->role === 'Editor';
+        return $user->role === 'Superadmin' || ($user->id === $targetUser->creator_user_id && $user->role === 'Editor');
     }
 
     public function delete(User $user, User $targetUser) {
